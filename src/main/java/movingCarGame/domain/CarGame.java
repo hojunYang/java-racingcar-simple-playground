@@ -1,6 +1,5 @@
-package movingCarGame;
+package movingCarGame.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,12 +7,6 @@ public class CarGame {
     List<Car> cars;
     public CarGame(List<Car> carList) {
         cars = carList;
-    }
-
-    public String getStringState() {
-        return cars.stream().map(car ->
-            car.getName() + " : " + "-".repeat(car.getDistance())
-        ).collect(Collectors.joining("\n"));
     }
 
     public String getStringWinner() {
@@ -25,5 +18,8 @@ public class CarGame {
 
     public void play() {
         cars.forEach(Car::move);
+    }
+    public List<Car> getCars() {
+        return cars;
     }
 }

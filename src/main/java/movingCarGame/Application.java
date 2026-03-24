@@ -3,11 +3,16 @@ package movingCarGame;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import movingCarGame.domain.Car;
+import movingCarGame.domain.CarGame;
+import movingCarGame.view.InputView;
+import movingCarGame.view.OutputView;
 
-public class Runner {
+public class Application {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MAX_TRY_GAMES = 100;
-    static Scanner input = new Scanner(System.in);
+    static InputView iv = new InputView();
+    static OutputView ov = new OutputView();
 
     static void validateName(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
@@ -54,20 +59,18 @@ public class Runner {
     }
 
     public static void main(String[] args) {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        List<Car> cars = parseNames(input.nextLine());
+        String input = iv.readCarNames();
+        List<Car> cars = parseNames(input);
         CarGame game = new CarGame(cars);
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        int count = parseCount(input.nextLine());
+        input = iv.readTryCount();
+        int count = parseCount(input);
 
-        System.out.println("실행결과");
-        for(int i=0; i < count; i++) {
+        ov.printResult();
+        for (int i = 0; i < count; i++) {
             game.play();
-            System.out.println(game.getStringState());
-            System.out.println();
+            ov.printRoundResult(game.getCars());
         }
-
-        System.out.println(game.getStringWinner() + "가 최종 우승했습니다.");
+        ov.printFinalWinner(game.getStringWinner());
     }
 }
