@@ -14,5 +14,5 @@ getName(): 자동차 이름을 반환한다.
 
 ## CarGame 클래스
 play: 모든 자동차의 move 메소드를 실행한다.
-getStringWinner: 가장 이동거리가 긴 자동차들의 이름을 반환한다(구분자 ,).
+getWinners: 가장 이동거리가 긴 자동차들의 이름을 반환한다(구분자 ,).
 getCars: 모든 자동차를 반환한다.

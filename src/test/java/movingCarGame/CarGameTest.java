@@ -1,27 +1,22 @@
 package movingCarGame;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.util.List;
-import java.util.Random;
 import movingCarGame.domain.Car;
 import movingCarGame.domain.CarGame;
+import movingCarGame.util.FixedRandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 public class CarGameTest {
 
     @Test
     @DisplayName("play 실행 시 모든 자동차의 move 호출 테스트")
     void testPlay() {
-        Random mockRandom = mock(Random.class);
-        when(mockRandom.nextInt(10)).thenReturn(5);
+        FixedRandomGenerator random = new FixedRandomGenerator(5);
 
-        Car a = new Car("a", mockRandom);
-        Car b = new Car("b", mockRandom);
+        Car a = new Car("a", random);
+        Car b = new Car("b", random);
 
         CarGame game = new CarGame(List.of(a, b));
         game.play();
@@ -34,17 +29,17 @@ public class CarGameTest {
     @Test
     @DisplayName("우승자 추출 테스트")
     void testPrintWinning() {
-        Random mockRandom = mock(Random.class);
-        when(mockRandom.nextInt(10)).thenReturn(5);
+        FixedRandomGenerator random = new FixedRandomGenerator(5);
 
-        Car a = new Car("a", mockRandom);
-        Car b = new Car("b", mockRandom);
+        Car a = new Car("a", random);
+        Car b = new Car("b", random);
 
         CarGame game = new CarGame(List.of(a, b));
         game.play();
 
-        String output = game.getStringWinner();
+        List<Car> output = game.getWinners();
 
-        assertThat(output).contains("a,b");
+        assertThat(output).extracting(Car::getName)
+                .containsExactly("a", "b");
     }
 }

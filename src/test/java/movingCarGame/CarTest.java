@@ -1,12 +1,10 @@
 package movingCarGame;
 
-import java.util.Random;
 import movingCarGame.domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import movingCarGame.util.FixedRandomGenerator;
 
 public class CarTest {
 
@@ -38,23 +36,23 @@ public class CarTest {
                 .isEqualTo(3);
     }
 
+    @DisplayName("랜덤값이 3이면 이동하지 않는다")
     @Test
-    @DisplayName("move 메소드 기능 테스트")
-    public void testMove() {
-        for (int i = 0; i < 100; i ++ ) {
-            Random mockRandom = mock(Random.class);
-            when(mockRandom.nextInt(10)).thenReturn(i % 10);
+    void testMoveWhenThree() {
+        FixedRandomGenerator random = new FixedRandomGenerator(3);
+        Car car = new Car("abc", random);
+        car.move();
 
-            Car car = new Car("abc", mockRandom);
-            car.move();
+        assertThat(car.getDistance()).isEqualTo(0);
+    }
 
-            int expected = 0;
-            if (i % 10 >= 4) {
-                expected = 1;
-            }
+    @DisplayName("랜덤값이 4이면 이동한다")
+    @Test
+    void testMoveWhenFour() {
+        FixedRandomGenerator random = new FixedRandomGenerator(4);
+        Car car = new Car("abc", random);
+        car.move();
 
-            assertThat(car.getDistance())
-                    .isEqualTo(expected);
-        }
+        assertThat(car.getDistance()).isEqualTo(1);
     }
 }
