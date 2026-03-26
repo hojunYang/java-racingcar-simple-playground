@@ -3,7 +3,8 @@ package movingCarGame.domain;
 import java.util.List;
 
 public class CarGame {
-    private final List <Car> cars;
+    private final List<Car> cars;
+
     public CarGame(List<Car> carList) {
         cars = carList;
     }
@@ -22,6 +23,7 @@ public class CarGame {
     public void play() {
         cars.forEach(Car::move);
     }
+
     public List<Car> getCars() {
         return cars;
     }

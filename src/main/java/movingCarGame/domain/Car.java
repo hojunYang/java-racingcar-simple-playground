@@ -9,8 +9,8 @@ public class Car {
     private static final int MOVE_STEP = 1;
 
     private final String name;
-    private int distance;
     private final RandomGenerator random;
+    private int distance;
 
     public Car(String name) {
         this(name, new DefaultRandomGenerator());
@@ -23,7 +23,7 @@ public class Car {
     }
 
     public void move() {
-        if(random.generateRandomValue(RANDOM_BOUND) >= MIN_MOVE_CONDITION) {
+        if (random.generateRandomValue(RANDOM_BOUND) >= MIN_MOVE_CONDITION) {
             addDistance(MOVE_STEP);
         }
     }
@@ -31,9 +31,11 @@ public class Car {
     public void addDistance(int addValue) {
         distance += addValue;
     }
+
     public String getName() {
         return name;
     }
+
     public int getDistance() {
         return distance;
     }

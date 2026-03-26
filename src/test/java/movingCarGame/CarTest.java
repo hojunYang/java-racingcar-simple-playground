@@ -1,10 +1,11 @@
 package movingCarGame;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import movingCarGame.domain.Car;
+import movingCarGame.util.FixedRandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
-import movingCarGame.util.FixedRandomGenerator;
 
 public class CarTest {
 
