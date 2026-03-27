@@ -16,10 +16,10 @@ public class CarGameTest {
     void testPlay() {
         FixedRandomGenerator random = new FixedRandomGenerator(5);
 
-        Car a = new Car("a", random);
-        Car b = new Car("b", random);
+        Car a = new Car("a");
+        Car b = new Car("b");
 
-        CarGame game = new CarGame(List.of(a, b));
+        CarGame game = new CarGame(List.of(a, b), random);
         game.play();
 
         assertThat(a.getDistance()).isEqualTo(1);
@@ -32,10 +32,10 @@ public class CarGameTest {
     void testPrintWinning() {
         FixedRandomGenerator random = new FixedRandomGenerator(5);
 
-        Car a = new Car("a", random);
-        Car b = new Car("b", random);
+        Car a = new Car("a");
+        Car b = new Car("b");
 
-        CarGame game = new CarGame(List.of(a, b));
+        CarGame game = new CarGame(List.of(a, b), random);
         game.play();
 
         List<Car> output = game.getWinners();

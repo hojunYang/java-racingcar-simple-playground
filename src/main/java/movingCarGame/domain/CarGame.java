@@ -1,13 +1,23 @@
 package movingCarGame.domain;
 
 import java.util.List;
+import movingCarGame.util.DefaultRandomGenerator;
+import movingCarGame.util.RandomGenerator;
 
 public class CarGame {
     private final List<Car> cars;
+    private final RandomGenerator random;
 
-    public CarGame(List<Car> carList) {
-        cars = carList;
+    public CarGame(List<Car> cars) {
+        this.cars = cars;
+        this.random = new DefaultRandomGenerator();
     }
+
+    public CarGame(List<Car> cars, RandomGenerator random) {
+        this.cars = cars;
+        this.random = random;
+    }
+
 
     public List<Car> getWinners() {
         int max = cars.stream()
@@ -21,7 +31,7 @@ public class CarGame {
     }
 
     public void play() {
-        cars.forEach(Car::move);
+        cars.forEach(car -> car.move(random.generateRandomValue()));
     }
 
     public List<Car> getCars() {

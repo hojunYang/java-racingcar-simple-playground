@@ -41,8 +41,8 @@ public class CarTest {
     @Test
     void testMoveWhenThree() {
         FixedRandomGenerator random = new FixedRandomGenerator(3);
-        Car car = new Car("abc", random);
-        car.move();
+        Car car = new Car("abc");
+        car.move(random.generateRandomValue());
 
         assertThat(car.getDistance()).isEqualTo(0);
     }
@@ -51,8 +51,8 @@ public class CarTest {
     @Test
     void testMoveWhenFour() {
         FixedRandomGenerator random = new FixedRandomGenerator(4);
-        Car car = new Car("abc", random);
-        car.move();
+        Car car = new Car("abc");
+        car.move(random.generateRandomValue());
 
         assertThat(car.getDistance()).isEqualTo(1);
     }

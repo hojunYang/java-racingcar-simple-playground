@@ -8,7 +8,7 @@ public class FixedRandomGenerator implements RandomGenerator {
     }
 
     @Override
-    public int generateRandomValue(int bound) {
+    public int generateRandomValue() {
         return value;
     }
 }
